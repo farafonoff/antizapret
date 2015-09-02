@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#FREE THE DNS
+ip route add 8.8.8.8 dev $1  proto kernel  scope link  src $4
+ip route add 8.8.4.4 dev $1  proto kernel  scope link  src $4
+
 ip rule del prio 666
 ip route flush table 666
 ip route add default dev $1  proto kernel  scope link  src $4 table 666
