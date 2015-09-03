@@ -3,17 +3,17 @@
 ipset -exist create rkn_update hash:ip
 ipset flush rkn_update
 
-rm /tmp/rkn.csv
-wget https://api.antizapret.info/all.php -O /tmp/rkn.csv
+rm /tmp/rkn.pac
+wget "http://antizapret.prostovpn.org/proxy.pac" -O /tmp/rkn.pac
 
-csvtool -t ";" col 4 /tmp/rkn.csv|tr -d \"|tr "," " " > /tmp/blackips
+egrep -o "([0-9]+\.){3}[0-9]+" /tmp/rkn.pac > /tmp/blackips_pac
 
 while read iphost
 do
 	for ip in $iphost; do
 		ipset -exist add rkn_update $ip
 	done;
-done < /tmp/blackips
+done < /tmp/blackips_pac
 
 ipset save rkn_update > /etc/rkn_blocked
 ipset swap rkn rkn_update
