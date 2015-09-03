@@ -16,3 +16,5 @@ ipset swap rkn_update rkn
 iptables -A PREROUTING -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
 iptables -A OUTPUT -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
 
+iptables -t nat -A POSTROUTING -o $1 -j MASQUERADE
+
