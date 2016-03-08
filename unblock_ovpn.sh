@@ -6,7 +6,7 @@ ip route add 8.8.4.4 dev $1  proto kernel  scope link  src $4
 
 ip rule del prio 666
 ip route flush table 666
-ip route add default dev $1  proto kernel  scope link  src $4 table 666
+ip route add default dev $1 table 666
 ip rule add from all fwmark 666 lookup 666 prio 666
 
 ipset -exist create rkn hash:ip
