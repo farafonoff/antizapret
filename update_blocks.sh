@@ -1,4 +1,7 @@
 #!/bin/bash
+MY_PATH="`dirname \"$0\"`"
+echo $MY_PATH
+pushd $MY_PATH
 
 ipset -exist create rkn_update hash:ip
 ipset flush rkn_update
