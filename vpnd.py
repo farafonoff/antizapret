@@ -1,4 +1,3 @@
-import pyping
 import csv
 import random
 import base64
@@ -6,17 +5,12 @@ import threading
 from subprocess import Popen,PIPE
 import time
 
-#r = pyping.ping('google.com')
-
-#if r.ret_code == 0:
-#    print("Viagra")
-#else:
-#    print("Promescent")
-
 def dump_out(pp):
 	while pp.returncode==None:
 		ps = pp.stdout.readline()
-		print ps
+		ps = ps.strip()
+		if len(ps)>0:
+			print ps
 		pp.poll()
 	print pp.returncode
 
@@ -55,7 +49,8 @@ while True:
 			else:
 				print row
 		count=len(slist)
-		slist = filter(lambda srv: srv[6]!='RU', slist)
+		censors = ['RU', 'KR']
+		slist = filter(lambda srv: not (srv[6] in censors), slist)
 		slist = sorted(slist, key=lambda srv: srv[2])
 		shortlist = slist[0:count/2]
 		server = random.choice(shortlist)
