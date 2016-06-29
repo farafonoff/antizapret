@@ -7,7 +7,7 @@ ipset -exist create rkn_update hash:ip
 ipset flush rkn_update
 
 rm /tmp/rkn.pac
-wget "http://www.vpngate.net/api/iphone/" -O vpns.csv
+#wget "http://www.vpngate.net/api/iphone/" -O vpns.csv
 
 wget -4 "http://antizapret.prostovpn.org/proxy.pac" -O /tmp/rkn.pac
 
