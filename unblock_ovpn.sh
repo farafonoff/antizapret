@@ -6,7 +6,7 @@
 
 ip rule del prio 666
 ip route flush table 666
-ip route add default dev $1 table 666
+ip route add default dev $1 from $4 via $5 table 666
 ip rule add from all fwmark 666 lookup 666 prio 666
 
 ipset -exist create rkn hash:ip
@@ -15,6 +15,5 @@ cat /etc/rkn_blocked | ipset -exist restore
 echo 2 > /proc/sys/net/ipv4/conf/$1/rp_filter
 #iptables -A PREROUTING -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
 iptables -A OUTPUT -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
-
-#iptables -t nat -A POSTROUTING -o $1 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o $1 -j MASQUERADE
 
