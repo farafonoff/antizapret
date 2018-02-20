@@ -23,7 +23,7 @@ def runvpn(config):
 	cf = open('/tmp/vpn.cfg', 'wb');
 	cf.write(config)
 	cf.close()
-	pp = Popen(['/usr/sbin/openvpn', '--config', '/tmp/vpn.cfg', '--dev', 'tun101', '--script-security', '2','--route-noexec' , '--up', 'unblock_ovpn.sh'], stdout=PIPE)
+	pp = Popen(['/usr/sbin/openvpn', '--config', '/tmp/vpn.cfg', '--dev', 'tun101', '--script-security', '2','--route-noexec' , '--up', 'unblock_ovpn.sh','--down', 'downvpn.sh'], stdout=PIPE)
 	bgthread = threading.Thread(target=dump_out, args=(pp,))
 	bgthread.start()
 	time.sleep(40)
@@ -37,7 +37,7 @@ def runvpn(config):
 		print ('already dead')
 	
 def testvpn():
-	pp = Popen(['ping', '8.8.8.8', '-I', 'tun101', '-w', '2'])
+	pp = Popen(['ping', '8.8.8.8', '-I', 'tun101', '-w', '3'])
 	pp.wait()
 	if pp.returncode==0:
 		return True

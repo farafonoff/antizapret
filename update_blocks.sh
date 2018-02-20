@@ -3,6 +3,8 @@ MY_PATH="`dirname \"$0\"`"
 echo $MY_PATH
 pushd $MY_PATH
 
+/sbin/ipset -exist destroy rkn_update
+/sbin/ipset -exist create rkn hash:ip
 /sbin/ipset -exist create rkn_update hash:ip
 /sbin/ipset flush rkn_update
 
@@ -20,6 +22,7 @@ do
 	done;
 done < /tmp/blackips_pac
 
-/sbin/ipset save rkn_update > /etc/rkn_blocked
 /sbin/ipset swap rkn rkn_update
+/sbin/ipset save rkn > /etc/rkn_blocked
+/sbin/ipset -exist destroy rkn_update
 
