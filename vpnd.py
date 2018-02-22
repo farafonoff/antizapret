@@ -67,9 +67,11 @@ def pickAndConnect(serversList):
 	runvpn(config)
 
 while True:
-    lines = newservlist()
-    pickAndConnect(lines)
-#	with open('vpns.csv','rb') as servers:
-#            pickAndConnect(servers)
-
+    try:
+	print('GET SERVER LIST...')
+    	lines = newservlist()
+    	pickAndConnect(lines)
+    except:
+	print('FAIL')
+	time.sleep(10)
 
