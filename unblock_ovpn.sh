@@ -15,5 +15,6 @@ cat /etc/rkn_blocked | ipset -exist restore
 echo 2 > /proc/sys/net/ipv4/conf/$1/rp_filter
 #iptables -A PREROUTING -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
 iptables -A OUTPUT -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
+iptables -A PREROUTING -t mangle -m set --match-set rkn dst -j MARK --set-mark 666
 iptables -t nat -A POSTROUTING -o $1 -j MASQUERADE
 

@@ -60,6 +60,7 @@ def pickAndConnect(serversList):
 	count=len(slist)
 	slist = filter(lambda srv: not (srv[6] in censors), slist)
 	slist = sorted(slist, key=lambda srv: srv[2])
+	print('total items: ' + len(slist))
 	shortlist = slist[0:int(count/2)]
 	server = random.choice(shortlist)
 	print(server[:14])
