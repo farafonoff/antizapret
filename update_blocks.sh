@@ -24,6 +24,7 @@ done < /tmp/blackips_pac
 
 /sbin/ipset swap rkn rkn_update
 /sbin/ipset -exist add rkn 91.198.22.70
+/sbin/ipset -exist add rkn 8.8.4.4
 /sbin/ipset save rkn > /etc/rkn_blocked
 /sbin/ipset -exist destroy rkn_update
 

@@ -7,7 +7,7 @@ pushd $MY_PATH
 wget "https://api.antizapret.info/group.php" -O groups
 #wget -4 "http://antizapret.prostovpn.org/proxy.pac" -O /tmp/rkn.pac
 #egrep -o "([0-9]+\.){3}[0-9]+" /tmp/rkn.pac > /tmp/blackips_pac
-echo "create rkn hash:ip family inet hashsize 2048 maxelem 65536" > rkn.set
+echo "create rkn hash:net family inet hashsize 2048 maxelem 100000000" > rkn.set
 
 IFS=","
 while read blockline
