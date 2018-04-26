@@ -25,9 +25,9 @@ echo "add $ISET 91.198.22.70" >> $FILE
 echo set generated $ISET
 wc -l $FILE
 echo flush
-ipset flush $ISET
+ipset flush -exist $ISET
 echo destroy
-ipset destroy $ISET
+ipset destroy -exist $ISET
 echo restore
 ipset restore -exist < $FILE
 echo swap
