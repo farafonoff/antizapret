@@ -9,7 +9,7 @@ ISET=rkn_new
 #wget -4 "http://antizapret.prostovpn.org/proxy.pac" -O /tmp/rkn.pac
 #egrep -o "([0-9]+\.){3}[0-9]+" /tmp/rkn.pac > /tmp/blackips_pac
 echo update submodules..
-git submodule update
+git submodule update --recursive --remote
 echo "create $ISET hash:net family inet hashsize 2048 maxelem 100000000" > $FILE
 
 IFS="|"
